@@ -22,3 +22,12 @@ Muhsaf: [
   ...
 ]
 ```
+## 1. Install
+```
+npm i
+```
+
+## 2. Run 
+```
+npm start
+```
