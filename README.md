@@ -38,6 +38,10 @@ npm i
 npm start
 ```
 
+## Credits
+- https://github.com/semarketir/quranjson
+- https://github.com/quran/quran.com-api
+
 ## Todo
 
 - [x] Add chapter names
