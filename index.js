@@ -1,5 +1,6 @@
 import { writeFileSync } from "fs";
 import fetch from "node-fetch";
+import chapters from "./chapters.json" assert { type: "json" };
 
 let muhsaf = [];
 const requests = [];
@@ -12,16 +13,23 @@ for (let page_number = 1; page_number <= 604; page_number++) {
       .then((json) => {
         let raw_page = json.verses;
         let page = {};
-        let current_chapter_number = "";
+        let current_chapter_title = "";
 
         raw_page.forEach((verse) => {
           let chapter_number = verse.verse_key.split(":")[0];
           let verse_number = verse.verse_key.split(":")[1];
-          if (!(chapter_number in page)) {
-            current_chapter_number = chapter_number;
-            page[current_chapter_number] = [];
+          let chapter_title = chapters[chapter_number - 1].titleAr;
+
+          if (!(chapter_title in page)) {
+            current_chapter_title = chapter_title;
+            page[current_chapter_title] = {
+              chapter_number: chapter_number,
+              title_en: chapters[chapter_number - 1].title,
+              verse_count: chapters[chapter_number - 1].count,
+              text: [],
+            };
           }
-          page[current_chapter_number].push({
+          page[current_chapter_title].text.push({
             verse_number: verse_number,
             text: verse.text_uthmani,
           });
@@ -33,6 +41,6 @@ for (let page_number = 1; page_number <= 604; page_number++) {
 }
 
 Promise.all(requests).then((results) => {
-  muhsaf = [{}, ...results]; // empty object is added intentionally to fix the page index
-  writeFileSync("madani_muhsaf.json", JSON.stringify(muhsaf));
+  muhsaf = [{}, ...results]; // empty object is added intentionally to accommodate the original Muhsaf page indexes
+  writeFileSync("madani-muhsaf.json", JSON.stringify(muhsaf));
 });

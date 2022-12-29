@@ -4,7 +4,8 @@ A script made for fetching Quran data from https://quran.api-docs.io/v4/ and res
 
 ```
 Muhsaf: [
-  "page_number": {
+  {},
+  {
     "chapter_number": [
       {
         verse_number,
@@ -16,18 +17,28 @@ Muhsaf: [
       ...
     ]
   },
-  "page_number": {
+  {
     ...
   },
   ...
 ]
 ```
+
+Using this form, it is possible access the Quran text based on the page mainly, and get other page information (Juz' and Chapters). The goal is having a data reading experience similar to Muhsaf organization.
+
 ## 1. Install
+
 ```
 npm i
 ```
 
-## 2. Run 
+## 2. Run
+
 ```
 npm start
 ```
+
+## Todo
+
+- [x] Add chapter names
+- [ ] Add Juz' number
