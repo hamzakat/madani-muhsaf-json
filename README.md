@@ -4,23 +4,33 @@ A script made for fetching Quran data from https://quran.api-docs.io/v4/ and res
 
 ```
 Muhsaf: [
-  {},
-  {
-    "chapter_number": [
-      {
-        verse_number,
-        text
-      },
-      ...
-    ],
-    "chapter_number": [
-      ...
-    ]
-  },
-  {
-    ...
-  },
+  {...},
+  
   ...
+  
+  {
+    "chapter_number": {
+      "chapter_number": "112",
+      "title_en": "Al-Ikhlas",
+      "title_ar": "الإخلاص",
+      "verse_count": 4,
+      "text": [
+        { "verse_number": "1", "text": " قُلْ هُوَ ٱللَّهُ أَحَدٌ" },
+        { "verse_number": "2", "text": "ٱللَّهُ ٱلصَّمَدُ" },
+        { "verse_number": "3", "text": "لَمْ يَلِدْ وَلَمْ يُولَدْ" },
+        { "verse_number": "4", "text": "وَلَمْ يَكُن لَّهُۥ كُفُوًا أَحَدٌۢ" }
+      ]
+    },
+    
+    "chapter_number": {
+      "chapter_number": "113",
+      "title_en": "Al-Falaq",
+      "title_ar": "الفلق",
+      ...
+      "text" : [...]
+    }
+    {...}
+  },
 ]
 ```
 
