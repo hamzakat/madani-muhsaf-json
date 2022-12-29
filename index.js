@@ -13,23 +13,23 @@ for (let page_number = 1; page_number <= 604; page_number++) {
       .then((json) => {
         let raw_page = json.verses;
         let page = {};
-        let current_chapter_title = "";
+        let current_chapter_number = "";
 
         raw_page.forEach((verse) => {
           let chapter_number = verse.verse_key.split(":")[0];
           let verse_number = verse.verse_key.split(":")[1];
-          let chapter_title = chapters[chapter_number - 1].titleAr;
 
-          if (!(chapter_title in page)) {
-            current_chapter_title = chapter_title;
-            page[current_chapter_title] = {
+          if (!(chapter_number in page)) {
+            current_chapter_number = chapter_number;
+            page[current_chapter_number] = {
               chapter_number: chapter_number,
               title_en: chapters[chapter_number - 1].title,
+              title_ar: chapters[chapter_number - 1].titleAr,
               verse_count: chapters[chapter_number - 1].count,
               text: [],
             };
           }
-          page[current_chapter_title].text.push({
+          page[current_chapter_number].text.push({
             verse_number: verse_number,
             text: verse.text_uthmani,
           });
