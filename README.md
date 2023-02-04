@@ -9,23 +9,24 @@ Muhsaf: [
   ...
   
   {
-    "chapter_number": {
-      "chapter_number": "112",
-      "title_en": "Al-Ikhlas",
-      "title_ar": "الإخلاص",
-      "verse_count": 4,
+    "chapterNumber": {
+      "chapterNumber": "112",
+      "titleEn": "Al-Ikhlas",
+      "titleAr": "الإخلاص",
+      "verseCount": 4,
       "text": [
         { "verse_number": "1", "text": " قُلْ هُوَ ٱللَّهُ أَحَدٌ" },
         { "verse_number": "2", "text": "ٱللَّهُ ٱلصَّمَدُ" },
         { "verse_number": "3", "text": "لَمْ يَلِدْ وَلَمْ يُولَدْ" },
         { "verse_number": "4", "text": "وَلَمْ يَكُن لَّهُۥ كُفُوًا أَحَدٌۢ" }
-      ]
+      ],
+      "juzNumber": 30
     },
     
-    "chapter_number": {
-      "chapter_number": "113",
-      "title_en": "Al-Falaq",
-      "title_ar": "الفلق",
+    "chapterNumber": {
+      "chapterNumber": "113",
+      "titleEn": "Al-Falaq",
+      "titleAr": "الفلق",
       ...
       "text" : [...]
     }
@@ -55,4 +56,4 @@ npm start
 ## Todo
 
 - [x] Add chapter names
-- [ ] Add Juz' number
+- [x] Add Juz' number
