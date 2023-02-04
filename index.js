@@ -6,6 +6,7 @@ let muhsaf = [];
 const requests = [];
 for (let page_number = 1; page_number <= 604; page_number++) {
   requests.push(
+    /* create the page */
     fetch(
       `https://api.quran.com/api/v4/quran/verses/uthmani?page_number=${page_number}`
     )
@@ -13,6 +14,7 @@ for (let page_number = 1; page_number <= 604; page_number++) {
       .then((json) => {
         let raw_page = json.verses;
         let page = {};
+
         let current_chapter_number = "";
 
         raw_page.forEach((verse) => {
@@ -22,25 +24,39 @@ for (let page_number = 1; page_number <= 604; page_number++) {
           if (!(chapter_number in page)) {
             current_chapter_number = chapter_number;
             page[current_chapter_number] = {
-              chapter_number: chapter_number,
-              title_en: chapters[chapter_number - 1].title,
-              title_ar: chapters[chapter_number - 1].titleAr,
-              verse_count: chapters[chapter_number - 1].count,
+              chapterNumber: chapter_number,
+              titleEn: chapters[chapter_number - 1].title,
+              titleAr: chapters[chapter_number - 1].titleAr,
+              verseCount: chapters[chapter_number - 1].count,
               text: [],
             };
           }
           page[current_chapter_number].text.push({
-            verse_number: verse_number,
+            verseNumber: verse_number,
             text: verse.text_uthmani,
           });
         });
 
         return page;
       })
+      .then(async (page) => {
+        /* add juz number to each page */
+        return fetch(
+          `https://api.quran.com/api/v4/verses/by_page/${page_number}`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            page = {
+              ...page,
+              juzNumber: data.verses[0].juz_number,
+            };
+            return page;
+          });
+      })
   );
 }
 
 Promise.all(requests).then((results) => {
-  muhsaf = [{}, ...results]; // empty object is added intentionally to accommodate the original Muhsaf page indexes
+  muhsaf = [{}, ...results]; // empty object is added intentionally to accommodate the original Muhsaf page page_numberes
   writeFileSync("madani-muhsaf.json", JSON.stringify(muhsaf));
 });
