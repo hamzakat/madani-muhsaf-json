@@ -37,6 +37,10 @@ Muhsaf: [
 
 Using this form, it is possible access the Quran text based on the page mainly, and get other page information (Juz' and Chapters). The goal is having a data reading experience similar to Muhsaf organization.
 
+
+## Get the JSON
+- Save this: https://raw.githubusercontent.com/hamzakat/madani-muhsaf-json/main/madani-muhsaf.json
+
 ## 1. Install
 
 ```
